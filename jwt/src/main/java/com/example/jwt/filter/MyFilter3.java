@@ -1,5 +1,7 @@
 package com.example.jwt.filter;
 
+import com.example.jwt.jwt.JwtProperties;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +25,7 @@ public class MyFilter3 implements Filter {
             String headerAuth = req.getHeader("Authorization");
             System.out.println("headerAuth = " + headerAuth);
 
-            if (headerAuth.equals("cos")) {
+            if (headerAuth.equals(JwtProperties.SECRET)) {
                 chain.doFilter(req, res);
             } else {
                 PrintWriter out = res.getWriter();
